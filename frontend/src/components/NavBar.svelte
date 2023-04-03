@@ -10,7 +10,7 @@
         alt="Flowbite Logo"
       />
       <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-        Flowbite
+        Dancey
       </span>
     </NavBrand>
     <NavHamburger on:click={toggle} />
