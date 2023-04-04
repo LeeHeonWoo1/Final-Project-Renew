@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
+from domains.videos import videos_router
+from domains.User import user_router
 
 app = FastAPI()
 
@@ -8,9 +10,10 @@ origins = ['http://127.0.0.1:5173']
 app.add_middleware(
     CORSMiddleware,
     allow_origins = origins,
-    allow_methods = ['*'],
+    allow_credentials = True,
+    allow_methods = ["*"],
+    allow_headers=["*"]
 )
 
-@app.get('/')
-def ge():
-    return {"message":"get first commit"}
+app.include_router(videos_router.router)
+app.include_router(user_router.router)

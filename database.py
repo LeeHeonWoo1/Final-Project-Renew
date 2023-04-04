@@ -1,10 +1,13 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from starlette.config import Config
 
-DB_URL = 'mysql+pymysql://root:11112222@127.0.0.1:3306/dancey?charset=utf8'
+config = Config('./.env')
 
-engine = create_engine(DB_URL)
+SQLALCHEMY_DATABASE_URL = config('SQLALCHEMY_DATABASE_URL')
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 Base = declarative_base()
 meta = Base.metadata

@@ -1,10 +1,14 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import NavBar from './components/NavBar.svelte';
+  import Router from 'svelte-spa-router'
+  import Home from './routes/Home.svelte'
+  import SignUp from './routes/sign_up.svelte';
+  import Login from './routes/Login.svelte';
+
+  const routes = {
+    '/':Home,
+    '/sign_up':SignUp,
+    '/user-login':Login,
+  }
 </script>
 
-<NavBar/>
-<main>
-  <h1>Dancey project :D</h1>
-</main>
+<Router {routes}/>
