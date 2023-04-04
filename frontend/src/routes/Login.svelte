@@ -29,13 +29,14 @@ function login(event){
 </script>
 
 <div id="login">
-    <h1><strong>Welcome.</strong> Please login.</h1>
-    <form action="#" method="post">
+    <h1><strong>환영합니다!</strong> 로그인을 진행해주세요.</h1>
+    <form method="post">
       <fieldset>
         <Error error={error} />
         <p><input type="text" placeholder="Username" bind:value="{login_username}"></p>
         <p><input type="password" placeholder="Password" bind:value="{login_password}"></p>
-        <p><a use:link href="/">Forgot Password?</a></p>
+        <p><a use:link href="/">비밀번호를 잊으셨나요?</a></p>
+        <p><a use:link href="/sign_up">회원이 아니신가요?</a></p>
         <p><input type="submit" value="Login" on:click={login}></p>
       </fieldset>
     </form>

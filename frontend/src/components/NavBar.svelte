@@ -18,9 +18,9 @@
   <NavHamburger on:click={toggle} />
   <NavUl {hidden}>
     <NavLi href="/" active={true}>Home</NavLi>
-    <NavLi href="/services">Services</NavLi>
-    <NavLi href="/pricing">Pricing</NavLi>
-    <NavLi href="/contact">Contact</NavLi>
+    <NavLi ><a use:link href='/service'>정확도 책정</a></NavLi>
+    <NavLi ><a use:link href='/service'>보관함</a></NavLi>
+    <NavLi ><a use:link href='/service'>포인트샵</a></NavLi>
     <Dropdown triggeredBy="#nav-menu1" class="w-44 z-20">
       <DropdownItem>Dashboard</DropdownItem>
       <DropdownItem>Settings</DropdownItem>

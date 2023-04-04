@@ -42,12 +42,12 @@ function sign_up(event){
       </div>
   
       <div class="inputContainer">
-        <input type="text" class="input" placeholder="비밀번호" bind:value="{password1}">
+        <input type="password" class="input" placeholder="비밀번호" bind:value="{password1}">
         <label for="" class="label">Password</label>
       </div>
   
       <div class="inputContainer">
-        <input type="text" class="input" placeholder="2차 비밀번호" bind:value="{password2}">
+        <input type="password" class="input" placeholder="2차 비밀번호" bind:value="{password2}">
         <label for="" class="label">Confirm Password</label>
       </div>
   

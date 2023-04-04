@@ -31,7 +31,13 @@ const fastapi = (operation, url, params, success_callback, failure_callback) => 
     }
 
     fetch(_url, options).then(res=>{
+        if (res.status === 204){
+            if(success_callback){
+                success_callback()
+            }return
+        }
         res.json().then(json=>{
+
             if (res.status >= 200 && res.status < 300) {
                 if (success_callback) {
                     success_callback(json)
@@ -44,7 +50,7 @@ const fastapi = (operation, url, params, success_callback, failure_callback) => 
                 }
             }
         }).catch(error => {
-            console.log(JSON.stringify(error))
+            console.log(error)
         })
     })
 }
