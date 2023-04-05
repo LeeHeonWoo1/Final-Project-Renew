@@ -5,7 +5,7 @@ from domains.User import user_router
 
 app = FastAPI()
 
-origins = ['http://localhost:5173']
+origins = ['http://127.0.0.1:5173']
 
 app.add_middleware(
     CORSMiddleware,

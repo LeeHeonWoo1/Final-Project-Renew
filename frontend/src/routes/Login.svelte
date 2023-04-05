@@ -35,7 +35,7 @@ function login(event){
         <Error error={error} />
         <p><input type="text" placeholder="Username" bind:value="{login_username}"></p>
         <p><input type="password" placeholder="Password" bind:value="{login_password}"></p>
-        <p><a use:link href="/">비밀번호를 잊으셨나요?</a></p>
+        <p><a use:link href="/find-id">아이디 찾기/</a><a use:link href="/change-password">비밀번호 변경</a></p>
         <p><a use:link href="/sign_up">회원이 아니신가요?</a></p>
         <p><input type="submit" value="Login" on:click={login}></p>
       </fieldset>

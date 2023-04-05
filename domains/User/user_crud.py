@@ -1,6 +1,7 @@
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from domains.User.user_schema import CreateUser
+from domains.User.find_schema import UserInformation, ChangePassword
 from models import User
 
 # bcrypt알고리즘을 사용하는 CryptContext 객체 생성
@@ -21,3 +22,11 @@ def get_existing_user(db:Session, user_create:CreateUser):
 
 def get_user(db: Session, username: str):
     return db.query(User).filter(User.username == username).first()
+
+def get_user_email(db: Session, email: str):
+    return db.query(User).filter(User.email == email).first()
+
+def change_password(db:Session, user:UserInformation, change_pwd:ChangePassword):
+    user.password = pwd_context.hash(change_pwd.password1)
+    db.add(user)
+    db.commit()
