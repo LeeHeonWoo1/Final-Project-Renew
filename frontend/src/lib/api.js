@@ -1,6 +1,4 @@
 import qs from 'qs'
-import { access_token, username, is_login } from "./store"
-import {get} from 'svelte/store'
 
 const fastapi = (operation, url, params, success_callback, failure_callback) => {
     let method = operation
@@ -36,6 +34,7 @@ const fastapi = (operation, url, params, success_callback, failure_callback) => 
                 success_callback()
             }return
         }
+
         res.json().then(json=>{
 
             if (res.status >= 200 && res.status < 300) {

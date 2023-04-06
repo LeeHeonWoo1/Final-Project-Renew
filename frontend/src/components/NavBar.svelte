@@ -2,22 +2,19 @@
   import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Dropdown, DropdownItem, Chevron, DropdownDivider, Button } from 'flowbite-svelte'
   import {link} from 'svelte-spa-router'
   import { access_token, username, is_login } from "../lib/store"
+  import dancey from '../assets/dancey.png'
 </script>
 
 <Navbar let:hidden let:toggle>
   <NavBrand href="/">
-    <img
-      src="https://flowbite.com/docs/images/logo.svg"
-      class="mr-3 h-6 sm:h-9"
-      alt="Flowbite Logo"
-    />
+    <img src="{dancey}" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo"/>
     <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
       Dancey
     </span>
   </NavBrand>
   <NavHamburger on:click={toggle} />
   <NavUl {hidden}>
-    <NavLi href="/" active={true}>Home</NavLi>
+    <NavLi href="/" active={true}>게시판</NavLi>
     <NavLi ><a use:link href='/service'>정확도 책정</a></NavLi>
     <NavLi ><a use:link href='/service'>보관함</a></NavLi>
     <NavLi ><a use:link href='/service'>포인트샵</a></NavLi>

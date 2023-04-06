@@ -2,13 +2,14 @@ from pydantic import EmailStr, BaseModel, validator
 
 class CreateUser(BaseModel):
     username: str
+    name: str
     nickname: str
     password1: str
     password2: str
     email: EmailStr
 
     # 모든 입력란에 대해 빈값 허용 x
-    @validator('username', 'nickname','password1', 'password2', 'email')
+    @validator('username', 'name', 'nickname', 'password1', 'password2', 'email')
     def not_null(cls, v):
         if not v or not v.strip():
             raise ValueError('빈값은 허용하지 않습니다. 입력란을 확인하세요.')

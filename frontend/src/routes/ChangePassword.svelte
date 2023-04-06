@@ -34,8 +34,8 @@ function ChangePassword(event){
     <Error error={error} />
     <form method="post">
         <fieldset>
-        <p><input type="text" placeholder="Username" bind:value="{change_username}"></p>
-        <p><input type="text" placeholder="email" bind:value="{change_email}"></p>
+        <p><input type="text" placeholder="아이디" bind:value="{change_username}"></p>
+        <p><input type="text" placeholder="이메일" bind:value="{change_email}"></p>
         <p><input type="password" placeholder="비밀번호" bind:value="{change_password1}"></p>
         <p><input type="password" placeholder="비밀번호 확인" bind:value="{change_password2}"></p>
         

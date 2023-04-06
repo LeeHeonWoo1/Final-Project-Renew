@@ -56,10 +56,35 @@ input[type="password"] {
   width: 300px;
 }
 
+.val_num_space{
+  background: #e5e5e5;
+  border: none;
+  border-radius: 3px;
+  color: #5a5656;
+  font-family: inherit;
+  font-size: 14px;
+  height: 50px;
+  outline: none;
+  padding: 0px 10px;
+  width: 300px;
+}
+
 form fieldset input[type="submit"] {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+  background-color: #008dde;
+  border: none;
+  border-radius: 3px;
+  color: #f4f4f4;
+  cursor: pointer;
+  font-family: inherit;
+  height: 50px;
+  text-transform: uppercase;
+  width: 300px;
+}
+
+.btn-commit{
   background-color: #008dde;
   border: none;
   border-radius: 3px;

@@ -3,6 +3,8 @@ from database import get_db
 from sqlalchemy.orm import Session
 from domains.User import user_crud, user_schema, find_schema
 from domains.User.user_crud import pwd_context
+from SendMail import gmail_sender
+from random import randint
 
 from datetime import timedelta, datetime
 from fastapi.security import OAuth2PasswordRequestForm
@@ -15,10 +17,15 @@ SECRET_KEY = config('SECRET_KEY')
 ACCESS_TOKEN_EXPIRE_MINUTES = int(config('ACCESS_TOKEN_EXPIRE_MINUTES'))
 ALGORITHM = 'HS256'
 
+# 메일 발송 시 필요한 것들
+MAIL_SENDER = config('MAIL_SENDER')
+SENDER_PASSWORD=config('SENDER_PASSWORD')
+
 router = APIRouter(
     prefix='/api/user'
 )
 
+# 회원가입
 @router.post('/create', status_code=status.HTTP_204_NO_CONTENT)
 def sign_up(_user_create:user_schema.CreateUser, db:Session = Depends(get_db)):
     user = user_crud.get_existing_user(db=db, user_create=_user_create) 
@@ -27,13 +34,12 @@ def sign_up(_user_create:user_schema.CreateUser, db:Session = Depends(get_db)):
     
     user_crud.create_user(db=db, user_create=_user_create)
 
+# 로그인 
 @router.post('/login', response_model=user_schema.Token)
 def login_for_token_access(form_data:OAuth2PasswordRequestForm = Depends(), db:Session = Depends(get_db)):
-    # OAuth2PasswordRequestForm으로부터 사용자가 입력하는 username와 password에 대한 정보를 얻어올 수 있다.
     user = user_crud.get_user(db, form_data.username)
 
     if not user or not pwd_context.verify(form_data.password, user.password):
-        # 로그인에 실패하면 헤더에 필요한 정보를 담아 error를 발생시킨다.
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='아이디 및 비밀번호를 확인하세요', headers={"WWW-Authenticate": "Bearer"})
     
     data = {
@@ -49,22 +55,42 @@ def login_for_token_access(form_data:OAuth2PasswordRequestForm = Depends(), db:S
         "username": user.username
     }
 
-# 유저의 아이디, 비밀번호만 return
 @router.post('/user-inform', response_model=find_schema.UserInformation)
 def get_user_id(_user:find_schema.UserID, db:Session = Depends(get_db)):
     user = user_crud.get_user(db=db, username=_user.username)
     return user
 
 # 아이디 찾을 때 사용
-@router.post('/user-email', response_model=find_schema.UserInformation)
-def get_user_email(_user:find_schema.UserEmail, db:Session = Depends(get_db)):
-    user_email = user_crud.get_user_email(db=db, email=_user.email)
-    return user_email
+@router.post('/user-email', status_code=status.HTTP_204_NO_CONTENT)
+def get_user_email(_user:find_schema.FindID, db:Session = Depends(get_db)):
+    user_info = user_crud.get_user_email(db=db, email=_user.email)
+
+    if user_info.email == _user.email and user_info.name == _user.name:
+        mail_sender = gmail_sender(MAIL_SENDER, _user.email, SENDER_PASSWORD)
+        mail_sender.msg_set("[Dancey] 아이디 확인 메일이 도착했습니다.", f"아이디는 {user_info.username}입니다.")
+        mail_sender.smtp_connect_send()
+        mail_sender.smtp_disconnect()
+
+# 비밀번호 변경 전 인증절차
+@router.post('/validation', status_code=status.HTTP_201_CREATED)
+def email_validation(_user:find_schema.FindPassword, db:Session = Depends(get_db)):
+    val_number = randint(9999, 99999)
+
+    user = user_crud.get_user(db=db, username=_user.username)
+    if not user:
+        raise HTTPException(detail='이름, 이메일 주소를 확인하세요.', status_code=status.HTTP_409_CONFLICT)
+
+    if user.username == _user.username and user.email == _user.email:
+        mail_sender = gmail_sender(MAIL_SENDER, _user.email, SENDER_PASSWORD)
+        mail_sender.msg_set("[Dancey] 인증메일이 도착했습니다.", f"인증번호는 : {val_number}입니다. 입력창에 입력해주세요")
+        mail_sender.smtp_connect_send()
+        mail_sender.smtp_disconnect()
+    
+    return val_number
 
 # 비밀번호 변경
 @router.put('/change-password', status_code=status.HTTP_204_NO_CONTENT)
 def change_password(change_inform:find_schema.ChangePassword, db:Session=Depends(get_db)):
-    # 입력받는 
     _user = user_crud.get_user(db=db, username=change_inform.username)
     if not _user:
         raise HTTPException(detail='존재하지 않는 사용자입니다. ', status_code=status.HTTP_409_CONFLICT)

@@ -3,15 +3,17 @@
   import Home from './routes/Home.svelte'
   import SignUp from './routes/sign_up.svelte';
   import Login from './routes/Login.svelte';
-  import FindPassword from './routes/FindPassword.svelte';
+  import ChangePassword from './routes/ChangePassword.svelte';
   import FindId from './routes/FindID.svelte';
+  import validate from './routes/valid/validate.svelte'
 
   const routes = {
     '/':Home,
     '/sign_up':SignUp,
     '/user-login':Login,
-    '/change-password':FindPassword,
+    '/change-password':ChangePassword,
     '/find-id':FindId,
+    '/validate':validate,
   }
 </script>
 

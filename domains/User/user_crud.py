@@ -9,8 +9,9 @@ pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
 def create_user(db:Session, user_create: CreateUser):
     db_user = User(username = user_create.username,
-                   # 객체를 이용해 암호 해시화
+                   name=user_create.name,
                    nickname = user_create.nickname,
+                   # 객체를 이용해 암호 해시화
                    password = pwd_context.hash(user_create.password1),
                    email = user_create.email)
     db.add(db_user)

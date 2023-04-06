@@ -14,11 +14,27 @@ class UserID(BaseModel):
     username: str
 
 # ID찾을 때 사용
-class UserEmail(BaseModel):
+class FindID(BaseModel):
+    name:str
     email:str
 
     class Config:
         orm_mode = True
+
+class FindPassword(BaseModel):
+    username: str
+    email: str
+
+    @validator('username', 'email')
+    def not_null(cls, v):
+        if not v or not v.strip():
+            raise ValueError('빈 값은 허용되지 않습니다.')
+
+    class Config:
+        orm_mode = True
+
+class ValidationNumber(BaseModel):
+    number: str
 
 # 비밀번호 변경
 class ChangePassword(BaseModel):
