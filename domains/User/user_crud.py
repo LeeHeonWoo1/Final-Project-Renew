@@ -7,6 +7,10 @@ from models import User
 # bcrypt알고리즘을 사용하는 CryptContext 객체 생성
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
+def delete_user(db:Session, delete_user:User):
+    db.delete(delete_user)
+    db.commit()
+
 def create_user(db:Session, user_create: CreateUser):
     db_user = User(username = user_create.username,
                    name=user_create.name,

@@ -99,3 +99,15 @@ def change_password(change_inform:find_schema.ChangePassword, db:Session=Depends
         raise HTTPException(detail='잘못된 아이디 혹은 이메일입니다.', status_code=status.HTTP_409_CONFLICT)
     
     user_crud.change_password(db = db, user = _user, change_pwd = change_inform)
+
+@router.delete('/sign_out', status_code=status.HTTP_204_NO_CONTENT)
+def sign_out(_sign_out:user_schema.SignOut, db:Session = Depends(get_db)):
+    sign_out_user = user_crud.get_user(username = _sign_out.username, db = db)
+    if not sign_out_user:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="이미 탈퇴 처리된 사용자이거나, 존재하지 않는 사용자 입니다.")
+    
+    if (sign_out_user.username != _sign_out.username) or (not pwd_context.verify(_sign_out.password, sign_out_user.password)):
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="아이디 혹은 비밀번호를 확인하세요.")
+    
+    user_crud.delete_user(db=db, delete_user=sign_out_user)
+

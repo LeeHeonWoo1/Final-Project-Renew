@@ -19,11 +19,11 @@
     <NavLi ><a use:link href='/service'>보관함</a></NavLi>
     <NavLi ><a use:link href='/service'>포인트샵</a></NavLi>
     <Dropdown triggeredBy="#nav-menu1" class="w-44 z-20">
-      <DropdownItem>Dashboard</DropdownItem>
+      <DropdownItem><a use:link href='/'>대시보드</a></DropdownItem>
       <DropdownItem>Settings</DropdownItem>
       <DropdownItem>Earnings</DropdownItem>
       <DropdownDivider />
-      <DropdownItem>Sign out</DropdownItem>
+      <DropdownItem><a use:link href='/sign_out'>회원탈퇴</a></DropdownItem>
     </Dropdown>
     <NavLi id="nav-menu1" class="cursor-pointer"><Chevron aligned>Dropdown</Chevron></NavLi>
     {#if $is_login}

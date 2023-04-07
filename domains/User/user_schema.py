@@ -23,6 +23,17 @@ class CreateUser(BaseModel):
             raise ValueError('비밀번호가 일치하지 않습니다.')
         return v
     
+class SignOut(BaseModel):
+    username: str
+    email: str
+    password: str
+
+    @validator('username', 'email', 'password')
+    def not_null(cls, v):
+        if not v or not v.strip():
+            raise ValueError('빈 값은 허용하지 않습니다.')
+        return v
+    
 class Token(BaseModel):
     access_token: str
     token_type: str
