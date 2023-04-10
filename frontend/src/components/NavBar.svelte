@@ -1,5 +1,5 @@
 <script>
-  import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Dropdown, DropdownItem, Chevron, DropdownDivider, Button } from 'flowbite-svelte'
+  import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Dropdown, DropdownItem, Chevron, DropdownDivider} from 'flowbite-svelte'
   import {link} from 'svelte-spa-router'
   import { access_token, username, is_login } from "../lib/store"
   import dancey from '../assets/dancey.png'
@@ -12,7 +12,7 @@
       Dancey
     </span>
   </NavBrand>
-  <NavHamburger on:click={toggle} />
+  <NavHamburger on:click={toggle}/>
   <NavUl {hidden}>
     <NavLi href="/" active={true}>게시판</NavLi>
     <NavLi ><a use:link href='/service'>정확도 책정</a></NavLi>

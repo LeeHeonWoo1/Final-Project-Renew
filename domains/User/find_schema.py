@@ -18,20 +18,30 @@ class FindID(BaseModel):
     name:str
     email:str
 
+    @validator('name', 'email')
+    def not_null(cls, v):
+        if not v or not v.strip():
+            raise ValueError('빈 값은 허용되지 않습니다.')
+        
+        return v
+
     class Config:
         orm_mode = True
 
 class FindPassword(BaseModel):
-    username: str
-    email: str
+    username:str
+    email:str
 
     @validator('username', 'email')
     def not_null(cls, v):
         if not v or not v.strip():
             raise ValueError('빈 값은 허용되지 않습니다.')
+        
+        return v
 
     class Config:
         orm_mode = True
+
 
 class ValidationNumber(BaseModel):
     number: str

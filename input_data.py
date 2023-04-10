@@ -17,7 +17,11 @@ for csv in os.listdir('./csvs'):
     singer = list(df['title'])
     image = list(df['src'])
     url = list(df['href'])
-
+    
+    for i in range(0, len(url)):
+        url_first_spot = url[i].find('=')
+        url[i] = "https://www.youtube.com/embed/" + url[i][url_first_spot+1:]
+    
     for i in range(len(singer)):
         singer[i] = re.sub(r"[^a-zA-Z ]", "", singer[i])
 

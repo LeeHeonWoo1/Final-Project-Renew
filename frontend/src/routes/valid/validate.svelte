@@ -16,8 +16,8 @@
 
         let url = '/api/user/validation'
         let params = {
-            username: username,
-            email:useremail
+            email: useremail,
+            username: username
         }
 
         fastapi('post', url, params, (json)=>{

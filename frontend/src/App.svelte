@@ -1,6 +1,7 @@
 <script>
   import Router from 'svelte-spa-router'
   import Home from './routes/Home.svelte'
+  import Detail from './routes/Detail.svelte';
   import SignUp from './routes/sign_up.svelte';
   import Login from './routes/Login.svelte';
   import ChangePassword from './routes/ChangePassword.svelte';
@@ -10,6 +11,7 @@
 
   const routes = {
     '/':Home,
+    '/detail/:video_id':Detail,
     '/sign_up':SignUp,
     '/user-login':Login,
     '/change-password':ChangePassword,
@@ -19,4 +21,6 @@
   }
 </script>
 
-<Router {routes}/>
+<main>
+  <Router {routes}/>
+</main>

@@ -13,11 +13,12 @@
 
     get_video_list()
 </script>
+
 <NavBar />
 <div style="margin-top:60px;" class='container'>
     {#each video_list as video}
         <div class='item'>
-            <a href='{video.youtube_url}'><img class='videos' src="{video.src}" alt="{video.singer}"></a>
+            <a use:link href='/detail/{video.id}'><img class='videos' src="{video.src}" alt="{video.singer}"></a>
             <div class='singer'>{video.singer}</div>
         </div>
     {/each}

@@ -11,3 +11,8 @@ router = APIRouter(
 def video_list(db:Session=Depends(get_db)):
     _video_list = videos_crud.get_video_list(db)
     return  _video_list
+
+@router.get('/detail/{video_id}', response_model=videos_schema.GetMainList)
+def get_video(video_id: int, db:Session=Depends(get_db)):
+    _video = videos_crud.get_video(db, video_id)
+    return _video

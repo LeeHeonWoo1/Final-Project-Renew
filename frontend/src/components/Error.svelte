@@ -10,7 +10,7 @@
     <ul>
         {#each error.detail as err, i}
         <li>
-            <strong>{err.loc[1]}</strong> : {err.msg}
+            {err.msg}
         </li>
         {/each}
     </ul>

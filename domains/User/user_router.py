@@ -17,7 +17,6 @@ SECRET_KEY = config('SECRET_KEY')
 ACCESS_TOKEN_EXPIRE_MINUTES = int(config('ACCESS_TOKEN_EXPIRE_MINUTES'))
 ALGORITHM = 'HS256'
 
-# 메일 발송 시 필요한 것들
 MAIL_SENDER = config('MAIL_SENDER')
 SENDER_PASSWORD=config('SENDER_PASSWORD')
 
@@ -25,7 +24,6 @@ router = APIRouter(
     prefix='/api/user'
 )
 
-# 회원가입
 @router.post('/create', status_code=status.HTTP_204_NO_CONTENT)
 def sign_up(_user_create:user_schema.CreateUser, db:Session = Depends(get_db)):
     user = user_crud.get_existing_user(db=db, user_create=_user_create) 
@@ -34,7 +32,6 @@ def sign_up(_user_create:user_schema.CreateUser, db:Session = Depends(get_db)):
     
     user_crud.create_user(db=db, user_create=_user_create)
 
-# 로그인 
 @router.post('/login', response_model=user_schema.Token)
 def login_for_token_access(form_data:OAuth2PasswordRequestForm = Depends(), db:Session = Depends(get_db)):
     user = user_crud.get_user(db, form_data.username)
