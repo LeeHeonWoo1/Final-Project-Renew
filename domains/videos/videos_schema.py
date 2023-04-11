@@ -10,3 +10,6 @@ class GetMainList(BaseModel):
 
     class Config:
         orm_mode = True
+
+class Keyword(BaseModel):
+    keyword: str = ''

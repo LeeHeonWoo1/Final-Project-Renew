@@ -26,6 +26,7 @@
     "gridjs": "^6.0.6",
     "gridjs-svelte": "^2.1.1",
     "qs": "^6.11.1",
+    "sapper": "^0.29.3",
     "svelte-grid": "^5.1.1",
     "svelte-spa-router": "^3.3.0"
   }

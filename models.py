@@ -28,6 +28,7 @@ class Replies(Base):
 
     id = Column(INT, autoincrement=True, primary_key=True)
     content = Column(VARCHAR(500), nullable=False)
+    writer = Column(VARCHAR(500), nullable=False)
     write_date = Column(DateTime, nullable=False)
     video_id = Column(INT, ForeignKey('Dance_dataset.id'))
     video = relationship("Dataset", backref="replies")

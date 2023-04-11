@@ -2,9 +2,10 @@ from pydantic import BaseModel, validator
 from datetime import datetime
 
 class CreateReply(BaseModel):
+    username: str
     content:str
 
-    @validator('content')
+    @validator('username','content')
     def not_null(cls, v):
         if not v or not v.strip():
             raise ValueError('빈 댓글은 저장되지 않습니다. 댓글을 입력해주세요 !')
@@ -13,7 +14,8 @@ class CreateReply(BaseModel):
     
 class Reply(BaseModel):
     id: int
-    content:str
+    content: str
+    writer: str
     write_date: datetime
 
     class Config:
