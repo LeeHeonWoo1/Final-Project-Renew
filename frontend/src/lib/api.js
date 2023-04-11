@@ -8,7 +8,6 @@ const fastapi = (operation, url, params, success_callback, failure_callback) => 
     if(operation === 'login') {
         method = 'post'
         content_type = 'application/x-www-form-urlencoded'
-        // OAuth2의 content type은 위에 있는 content_type이다. 원래의 타입에서 OAuth2가 요구하는 방향으로 고쳐주는 qs를 이용해서 body를 수정한다.
         body = qs.stringify(params)
     }
 

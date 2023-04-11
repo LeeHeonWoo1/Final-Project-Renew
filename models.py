@@ -32,3 +32,12 @@ class Replies(Base):
     write_date = Column(DateTime, nullable=False)
     video_id = Column(INT, ForeignKey('Dance_dataset.id'))
     video = relationship("Dataset", backref="replies")
+
+class Board(Base):
+    __tablename__ = 'board'
+    __table_args__ = {'extend_existing':True}
+
+    id = Column(INT, autoincrement=True, primary_key=True)
+    content = Column(VARCHAR(500), nullable=False)
+    writer = Column(VARCHAR(500), nullable=False)
+    write_date = Column(DateTime, nullable=False)

@@ -27,7 +27,7 @@
         Search
         </Button>
     </div>
-    <div style="margin-top:60px;" class='container'>
+    <div style="margin-top:120px;" class='container'>
         {#if video_list.length === 0}
             <div id="not-found">
                 <NotFound/>
