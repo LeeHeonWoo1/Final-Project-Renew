@@ -55,15 +55,6 @@
 <div class="container">
     <div id='nav-bar'>
         <NavBar/>
-        <div class="flex gap-2" id="search-box">
-            <Search bind:value={$keyword} size='md' class="flex gap-2 items-center" placeholder="곡 제목 or 가수의 이름을 영어로 검색하세요"/>
-            <Button size='sm' on:click={()=>{
-                push('/')
-            }}>
-            <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            Search
-            </Button>
-        </div>
     </div>
     <main>
         <iframe  width="1100" height="600" src="{inform.youtube_url}?autoplay=0" title="YouTube video player" frameborder="0" 
@@ -110,7 +101,7 @@
             </ol>
         </div>
     </main>
-    <aside>
+    <aside class="sub-videos">
         <h3 style="width: 380px; margin-bottom:20px;">more videos...</h3>
         {#each random_list as rand_video}
             <div class='singer' style="font-size: 14px;">{rand_video.singer}</div>
@@ -174,13 +165,6 @@ ol.large-numbers li:hover:before {
     right: 0;
 }
 
-#search-box{
-    position:fixed;
-    width:600px;
-    top: 20px;
-    left: 350px;
-}
-
 .container {
     font-family:'Roboto Slab', "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
     margin-top: 100px;
@@ -208,4 +192,5 @@ h2{
 main { grid-area: main; margin-left: 0px; }
 footer {grid-area: footer;}
 aside {grid-area: aside1;}
+
 </style>

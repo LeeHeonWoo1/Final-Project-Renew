@@ -1,5 +1,5 @@
 <script>
- import { link, push } from "svelte-spa-router";
+ import { push } from "svelte-spa-router";
  import { keyword } from "../lib/store";
  import { Button } from "flowbite-svelte";
 

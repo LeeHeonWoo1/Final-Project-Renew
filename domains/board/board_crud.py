@@ -7,3 +7,6 @@ def create_article(db: Session, _article: board_schema.Article):
     db_article = Board(content = _article.content, writer = _article.writer, write_date=datetime.now())
     db.add(db_article)
     db.commit()
+
+def get_article_list(db:Session):
+    return db.query(Board).all()

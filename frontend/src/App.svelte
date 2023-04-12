@@ -8,6 +8,7 @@
   import FindId from './routes/FindID.svelte';
   import validate from './routes/valid/validate.svelte'
   import SignOut from './routes/SignOut.svelte';
+  import Board from './routes/board/Board.svelte';
 
   const routes = {
     '/':Home,
@@ -18,6 +19,7 @@
     '/find-id':FindId,
     '/validate':validate,
     '/sign_out':SignOut,
+    '/board':Board,
   }
 </script>
 
