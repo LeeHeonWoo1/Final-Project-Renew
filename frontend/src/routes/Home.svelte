@@ -8,9 +8,7 @@
 </script>
 
 <div class="main">
-    <div class="nav-bar">
-        <NavBar />
-    </div>
+    <NavBar />
     <div style="margin-top:120px;" class='container'>
         {#if $videoList.length === 0}
             <div id="not-found">
@@ -36,13 +34,6 @@
     position:absolute;
     margin-top: -280px;
     margin-left: -180px;
-}
-
-.nav-bar{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
 }
 
 .main{

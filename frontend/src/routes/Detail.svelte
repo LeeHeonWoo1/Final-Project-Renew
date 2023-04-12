@@ -53,9 +53,7 @@
 
 
 <div class="container">
-    <div id='nav-bar'>
-        <NavBar/>
-    </div>
+    <NavBar/>
     <main>
         <iframe  width="1100" height="600" src="{inform.youtube_url}?autoplay=0" title="YouTube video player" frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -156,13 +154,6 @@ ol.large-numbers li:hover:before {
 }
 #comment_section{
     margin-top: 50px;
-}
-    
-#nav-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
 }
 
 .container {

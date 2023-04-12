@@ -1,9 +1,8 @@
 <script>
     // validation before change password
     import Error from '../../components/Error.svelte'
-    import {link, push} from 'svelte-spa-router'
+    import {push} from 'svelte-spa-router'
     import fastapi from '../../lib/api';
-    import { P } from 'flowbite-svelte';
     
     let error = {detail:[]}
     let username = ''

@@ -31,10 +31,7 @@
     }
 </script>
 
-<header>
-    <NavBar/>
-</header>
-
+<NavBar/>
 <div id="login" class='container'>
     <h1><strong>회원탈퇴</strong></h1>
     <h6>아래 정보를 입력해주세요.</h6>
@@ -52,12 +49,5 @@
 <style>
     .signout-btn{
         background-color: red;
-    }
-
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
     }
 </style>

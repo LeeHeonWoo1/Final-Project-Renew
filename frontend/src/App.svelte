@@ -9,6 +9,7 @@
   import validate from './routes/valid/validate.svelte'
   import SignOut from './routes/SignOut.svelte';
   import Board from './routes/board/Board.svelte';
+  import CreateArticle from './routes/board/CreateArticle.svelte';
 
   const routes = {
     '/':Home,
@@ -20,9 +21,8 @@
     '/validate':validate,
     '/sign_out':SignOut,
     '/board':Board,
+    '/board/create':CreateArticle,
   }
 </script>
 
-<main>
-  <Router {routes}/>
-</main>
+<Router {routes}/>

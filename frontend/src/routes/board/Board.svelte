@@ -1,6 +1,14 @@
 <script>
     import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
     import NavBar from '../../components/NavBar.svelte';
+    import fastapi from '../../lib/api';
+    import { link } from 'svelte-spa-router';
+    import { username } from '../../lib/store';
+
+    let articleList = []
+    let url = "/api/board/article_list"
+    fastapi('get', url, {writer:$username})
+
 </script>
 
 <div class="container">
@@ -28,16 +36,11 @@
             </TableBody>
         </Table>
     </main>
+
+    <a use:link href="/board/create">글쓰기</a>
 </div>
 
 <style>
-    #nav-bar{
-        position:fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-    }
-
     .main-table{
         position: relative;
         width: 1280px;
