@@ -1,10 +1,8 @@
 <script>
-    import fastapi from '../lib/api'
     import {link} from 'svelte-spa-router'
     import NavBar from '../components/NavBar.svelte';
-    import {keyword, videoList} from '../lib/store'
+    import {videoList} from '../lib/store'
     import NotFound from '../components/NotFound.svelte';
-    import { Search, Button } from 'flowbite-svelte';
 </script>
 
 <div class="main">

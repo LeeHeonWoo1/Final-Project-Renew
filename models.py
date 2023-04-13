@@ -38,6 +38,8 @@ class Board(Base):
     __table_args__ = {'extend_existing':True}
 
     id = Column(INT, autoincrement=True, primary_key=True)
+    title = Column(VARCHAR(500), nullable=False)
+    section = Column(VARCHAR(50), nullable=False)
     content = Column(VARCHAR(500), nullable=False)
     writer = Column(VARCHAR(500), nullable=False)
     write_date = Column(DateTime, nullable=False)

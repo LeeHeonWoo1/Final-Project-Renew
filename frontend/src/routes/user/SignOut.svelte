@@ -1,9 +1,9 @@
 <script>
-    import NavBar from "../components/NavBar.svelte";
-    import Error from "../components/Error.svelte";
-    import fastapi from "../lib/api";
+    import NavBar from "../../components/NavBar.svelte";
+    import Error from "../../components/Error.svelte";
+    import fastapi from "../../lib/api";
     import { push } from "svelte-spa-router";
-    import { access_token, username, is_login } from "../lib/store"
+    import { access_token, username, is_login } from "../../lib/store"
 
     let error = {detail:[]}
     let db_username = ''

@@ -1,7 +1,7 @@
 <script>
-    import Error from '../components/Error.svelte'
+    import Error from '../../components/Error.svelte';
     import {link} from 'svelte-spa-router'
-    import fastapi from '../lib/api';
+    import fastapi from '../../lib/api';
     
     let error = {detail:[]}
     let db_name = ''
@@ -33,5 +33,5 @@
 </div>
     
     <style>
-        @import './css/login.css';
+        @import '../css/login.css';
     </style>

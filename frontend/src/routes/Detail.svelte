@@ -3,9 +3,7 @@
     import NavBar from "../components/NavBar.svelte";
     import Error from '../components/Error.svelte'
     import {is_login, username} from '../lib/store'
-    import { Search, Button } from "flowbite-svelte";
-    import { keyword } from "../lib/store";
-    import { push, link } from "svelte-spa-router";
+    import { link } from "svelte-spa-router";
     
     export let params = {}
     

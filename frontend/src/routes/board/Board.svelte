@@ -1,48 +1,76 @@
 <script>
-    import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
+    import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Button, Pagination, Heading, PaginationItem } from 'flowbite-svelte';
     import NavBar from '../../components/NavBar.svelte';
-    import fastapi from '../../lib/api';
-    import { link } from 'svelte-spa-router';
-    import { username } from '../../lib/store';
+    import { push } from 'svelte-spa-router';
+    import SideBar from '../../components/SideBar.svelte';
+    import { is_login, section, page, articleList } from '../../lib/store';
+    import moment from 'moment/min/moment-with-locales';
+    moment.locale('ko')
 
-    let articleList = []
-    let url = "/api/board/article_list"
-    fastapi('get', url, {writer:$username})
 
+    function GotoPost(){
+        if ($is_login){
+                push('/board/create')
+        }else{
+                alert('로그인 후 이용해주세요')
+                push('/user-login')
+            }
+        }
 </script>
 
 <div class="container">
-    <header id="nav-bar">
-        <NavBar/>
-    </header>
-
+    <NavBar/>
     <main class="main-table">
+        <Heading tag="h1" class="mb-4" customSize="text-3xl font-extrabold  md:text-5xl lg:text-6xl">{$section}</Heading>
+        <div id="post-btn">
+            <Button on:click={GotoPost}>글쓰기</Button>
+        </div>
         <Table shadow>
             <TableHead>
                 <TableHeadCell>글 번호</TableHeadCell>
                 <TableHeadCell>제목</TableHeadCell>
                 <TableHeadCell>작성자</TableHeadCell>
+                <TableHeadCell>게시판</TableHeadCell>
                 <TableHeadCell>작성일시</TableHeadCell>
-                <TableHeadCell>조회수</TableHeadCell>
             </TableHead>
             <TableBody>
-                <TableBodyRow>
-                    <TableBodyCell>1</TableBodyCell>
-                    <TableBodyCell>Apple MacBook Pro 17"</TableBodyCell>
-                    <TableBodyCell>Sliver</TableBodyCell>
-                    <TableBodyCell>Laptop</TableBodyCell>
-                    <TableBodyCell>$2999</TableBodyCell>
-                </TableBodyRow>
+                {#each $articleList as article}
+                    <TableBodyRow>
+                        <TableBodyCell>{article.id}</TableBodyCell>
+                        <TableBodyCell>{article.title}</TableBodyCell>
+                        <TableBodyCell>{article.writer}</TableBodyCell>
+                        <TableBodyCell>{article.section}</TableBodyCell>
+                        <TableBodyCell>{moment(article.write_date).format("YYYY년 MM월 DD일 a hh:mm")}</TableBodyCell>
+                    </TableBodyRow>
+                {/each}
             </TableBody>
         </Table>
     </main>
-
-    <a use:link href="/board/create">글쓰기</a>
+    <SideBar/>
 </div>
 
 <style>
+    .container{
+        display: grid;
+        position: relative;
+        margin-left: -110px;
+        margin-top: 50px;
+        grid-template-columns: 300px 1136px;
+        grid-template-areas: 
+        "aside main"
+        "aside main";
+    }
+
+    main{grid-area: main;}
+
     .main-table{
         position: relative;
-        width: 1280px;
+        width: 1136px;
+    }
+
+    #post-btn{
+        position:relative;
+        margin-left: 1054px;
+        margin-bottom: 10px;
     }
 </style>

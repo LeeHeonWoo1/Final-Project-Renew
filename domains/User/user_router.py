@@ -49,7 +49,8 @@ def login_for_token_access(form_data:OAuth2PasswordRequestForm = Depends(), db:S
     return {
         "access_token":access_token,
         "token_type":"bearer",
-        "username": user.username
+        "username": user.username,
+        "user_nickname":user.nickname
     }
 
 @router.post('/user-inform', response_model=find_schema.UserInformation)

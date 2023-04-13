@@ -2,7 +2,7 @@
   import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Dropdown, DropdownItem, Chevron, DropdownDivider, Search, Button} from 'flowbite-svelte'
   import {link, push} from 'svelte-spa-router'
   import { keyword, videoList } from '../lib/store';
-  import { access_token, username, is_login } from "../lib/store"
+  import { access_token, username, is_login, section } from "../lib/store"
   import dancey from '../assets/dancey.png'
   import fastapi from '../lib/api';
 
@@ -50,7 +50,11 @@
     </div>
     <NavHamburger on:click={toggle}/>
     <NavUl {hidden}>
-      <NavLi active={true}><a use:link href='/board'>자유 게시판</a></NavLi>
+      <NavLi active={true}><a use:link href='/board' on:click={(event)=>{
+        event.preventDefault()
+        window.location.reload()
+        $section="게시판"
+        }}>게시판</a></NavLi>
       <NavLi ><a use:link href='/service'>정확도 책정</a></NavLi>
       <NavLi ><a use:link href='/service'>보관함</a></NavLi>
       <NavLi ><a use:link href='/service'>포인트샵</a></NavLi>

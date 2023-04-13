@@ -11,6 +11,14 @@ const persist_storage = (key, initValue) => {
 
 export const access_token = persist_storage("access_token", "")
 export const username = persist_storage("username", "")
+export const user_nickname = persist_storage("user_nickname", "")
+
+export const section = persist_storage("section", "게시판")
+export const page = persist_storage("page", 0)
+
 export const is_login = persist_storage("is_login", false)
 export const keyword = persist_storage("keyword", "")
+export const board_option = persist_storage("board_option", "")
+
 export const videoList = persist_storage("videoList", [])
+export const articleList = persist_storage("articleList", [])

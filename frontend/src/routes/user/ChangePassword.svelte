@@ -1,8 +1,7 @@
 <script>
-import Error from '../components/Error.svelte'
+import Error from '../../components/Error.svelte'
 import {push} from 'svelte-spa-router'
-import fastapi from '../lib/api';
-import { username } from '../lib/store';
+import fastapi from '../../lib/api';
 
 let error = {detail:[]}
 let change_username = ''
@@ -45,5 +44,5 @@ function ChangePassword(event){
 </div>
 
 <style>
-    @import './css/login.css';
+    @import '../css/login.css';
 </style>

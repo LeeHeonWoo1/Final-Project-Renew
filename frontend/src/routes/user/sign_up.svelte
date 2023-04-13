@@ -1,8 +1,7 @@
 <script>
-
 import { push } from 'svelte-spa-router'
-import fastapi from "../lib/api"
-import Error from '../components/Error.svelte'
+import fastapi from "../../lib/api"
+import Error from '../../components/Error.svelte'
 
 let error = {detail:[]}
 let username = ''
@@ -70,5 +69,5 @@ function sign_up(event){
 </body>
 
 <style lang='scss'>
-  @import './css/sign_up.css';
+  @import '../css/sign_up.css';
 </style>
