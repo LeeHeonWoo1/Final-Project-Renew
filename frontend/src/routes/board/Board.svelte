@@ -1,7 +1,7 @@
 <script>
     import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Button, Pagination, Heading, PaginationItem } from 'flowbite-svelte';
     import NavBar from '../../components/NavBar.svelte';
-    import { push } from 'svelte-spa-router';
+    import { push, link } from 'svelte-spa-router';
     import SideBar from '../../components/SideBar.svelte';
     import { is_login, section, page, articleList } from '../../lib/store';
     import moment from 'moment/min/moment-with-locales';
@@ -37,7 +37,7 @@
                 {#each $articleList as article}
                     <TableBodyRow>
                         <TableBodyCell>{article.id}</TableBodyCell>
-                        <TableBodyCell>{article.title}</TableBodyCell>
+                        <TableBodyCell><a use:link href='/board/detail/{article.id}'>{article.title}</a></TableBodyCell>
                         <TableBodyCell>{article.writer}</TableBodyCell>
                         <TableBodyCell>{article.section}</TableBodyCell>
                         <TableBodyCell>{moment(article.write_date).format("YYYY년 MM월 DD일 a hh:mm")}</TableBodyCell>

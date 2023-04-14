@@ -15,3 +15,8 @@ def create_new_article(_article:board_schema.CreateArticle ,db: Session = Depend
 def get_article_list(db:Session = Depends(get_db), section:str='', page:int=0, size:int=10):
     total, _article_list = board_crud.get_article_list(db=db, section=section, skip=page*size, limit=size)
     return {"total":total, "article_list":_article_list}
+
+@router.get("/get_one_article/{article_id}", response_model=board_schema.Article)
+def get_one_article(article_id:int = 0, db:Session = Depends(get_db)):
+    article = board_crud.get_one_article(db=db, article_id=article_id)
+    return article

@@ -38,12 +38,13 @@ def make_test_articles():
     db = SessionLocal()
     for i in range(0, 100):
         test_article = Board(title=f"{i}번째 테스트 게시글입니다.", 
-                             section="공지 사항",
+                             section="홍보 게시판",
                              content=f"{i}번째 테스트 게시글의 본문입니다.",
-                             writer='Admin',
+                             writer=f'{i}raswe',
                              write_date=datetime.now())
         db.add(test_article)
         
     db.commit()
+    
 # make_dance_dataset()
 make_test_articles()

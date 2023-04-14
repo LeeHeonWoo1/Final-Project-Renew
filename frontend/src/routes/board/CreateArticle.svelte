@@ -48,11 +48,7 @@
         <Dropdown>
           {#each dropdown_options as option}
             <DropdownItem on:click="{()=>{
-              if (option.id === 1){
-                $board_option = ""
-              }else{
                 $board_option = option.text
-              }
             }}">{option.text}</DropdownItem>
           {/each}
         </Dropdown>
@@ -80,16 +76,13 @@
       </div>
     </form>
   </main>
-  <aside>
-    <SideBar/>
-  </aside>
 </div>
 
 <style>
   .container{
     display: grid;
     position: relative;
-    margin-left: -110px;
+    margin-left: -210px;
     margin-top: -10px;
     grid-template-columns: 300px 1136px;
     grid-template-areas: 
@@ -100,11 +93,6 @@
   main{
     grid-area: main;
     margin-top: 18px;
-  }
-
-  aside{
-    grid-area: aside;
-    margin-top: -15px;
   }
 
   #editor{

@@ -10,6 +10,7 @@
   import SignOut from './routes/user/SignOut.svelte';
   import Board from './routes/board/Board.svelte';
   import CreateArticle from './routes/board/CreateArticle.svelte';
+  import ArticleDetail from './routes/board/ArticleDetail.svelte';
 
   const routes = {
     '/':Home,
@@ -22,6 +23,7 @@
     '/sign_out':SignOut,
     '/board':Board,
     '/board/create':CreateArticle,
+    '/board/detail/:article_id':ArticleDetail,
   }
 </script>
 
