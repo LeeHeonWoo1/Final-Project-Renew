@@ -43,3 +43,11 @@ class Board(Base):
     content = Column(VARCHAR(500), nullable=False)
     writer = Column(VARCHAR(500), nullable=False)
     write_date = Column(DateTime, nullable=False)
+    
+class Answer(Base):
+    __tablename__ = 'answer_for_board'
+    __table_args__ = {"extend_existing":True}
+    
+    id = Column(INT, autoincrement=True, primary_key=True)
+    answer = Column(VARCHAR(500), nullable=False)
+    answer_writer = Column(VARCHAR(60))
