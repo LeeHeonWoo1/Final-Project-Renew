@@ -126,17 +126,5 @@ aside{
     margin-left:5%;
     cursor:pointer;
 }
-.link:after{
-    content: '';
-    position:absolute;
-    width:80%;
-    border-bottom:1px solid rgba(255, 255, 255, 0.808);
-    bottom:50%;
-    left:-100%;
-    transition-delay: all 0.5s;
-    transition: all 0.5s;
-}
-.link:hover:after{
-    left:100%;
-}
+
 </style>

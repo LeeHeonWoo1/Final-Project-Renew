@@ -24,3 +24,14 @@ def get_article_list(db:Session, section:str, skip:int = 0, limit: int = 10):
 
 def get_one_article(db:Session, article_id:int):
     return db.query(Board).get(article_id)
+
+def delete_article(db:Session, article_id: int):
+    target_article = db.query(Board).get(article_id)
+    db.delete(target_article)
+    db.commit()
+    
+def modify_article(db:Session, article_id:int, new_article:board_schema.CreateArticle):
+    article = db.query(Board).get(article_id)
+    article.content = new_article.content
+    article.write_date = new_article.write_date
+    

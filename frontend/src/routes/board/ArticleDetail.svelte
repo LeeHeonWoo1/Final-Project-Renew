@@ -1,7 +1,8 @@
 <script>
+  import { push } from "svelte-spa-router";
     import NavBar from "../../components/NavBar.svelte";
     import fastapi from "../../lib/api";
-    import { user_nickname } from "../../lib/store";
+    import { user_nickname, page } from "../../lib/store";
     import { Button, Textarea, Toolbar, ToolbarGroup, ToolbarButton } from "flowbite-svelte";
 
     export let params = {}
@@ -14,6 +15,20 @@
         article = json
     })
 
+    function ModArticle(){
+      let url = `/api/board/modify/${_id}`
+    }
+
+    function DelArticle(){
+      let url = `/api/board/delete_article/${_id}`
+
+      alert('정말로 삭제하시겠습니까?')
+      fastapi('delete', url, {}, (json)=>{
+        alert('삭제 완료되었습니다.')
+        push('/board')
+      })
+    }
+
     function PostAnswer(){}
 
 </script>
@@ -25,10 +40,16 @@
     <div class="item">{article.content}</div>
     <div class="btn_container">
         <div class="btn">
-            <Button disabled='{$user_nickname !== article.writer}'>수정</Button>
+            <Button disabled='{$user_nickname !== article.writer}' on:click={ModArticle}>수정</Button>
         </div>
         <div class="btn">
-            <Button disabled='{$user_nickname !== article.writer}'>삭제</Button>
+            <Button disabled='{$user_nickname !== article.writer}' on:click={DelArticle}>삭제</Button>
+        </div>
+        <div class="btn">
+            <Button on:click={()=>{
+              $page = 0
+              push('/board')
+            }}>목록으로</Button>
         </div>
     </div>
     <div class="item">
@@ -48,7 +69,7 @@
                 <ToolbarButton name="send" slot="end"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg></ToolbarButton>
               </Toolbar>
             </Textarea>
-            <Button >댓글 등록</Button>
+            <Button on:click={PostAnswer}>댓글 등록</Button>
           </form>
     </div>
 </div>
@@ -74,6 +95,7 @@
     display: flex;
     flex-direction: row;
     justify-content: right;
+    gap: 3px;
 }
 
 /* .btn:nth-child(1){ flex-grow: 1;}

@@ -1,5 +1,5 @@
 <script>
-    import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Button, Pagination, Heading, PaginationItem } from 'flowbite-svelte';
+    import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Button, Search, Heading, PaginationItem } from 'flowbite-svelte';
     import NavBar from '../../components/NavBar.svelte';
     import { push, link } from 'svelte-spa-router';
     import SideBar from '../../components/SideBar.svelte';
@@ -22,8 +22,14 @@
     <NavBar/>
     <main class="main-table">
         <Heading tag="h1" class="mb-4" customSize="text-3xl font-extrabold  md:text-5xl lg:text-6xl">{$section}</Heading>
-        <div id="post-btn">
+        <div align="right" id="sub_container">
             <Button on:click={GotoPost}>글쓰기</Button>
+            <!-- <div id="search_box">
+                <Search size="md" />
+                    <Button class="!p-2.5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </Button>
+            </div> -->
         </div>
         <Table shadow>
             <TableHead>
@@ -68,9 +74,16 @@
         width: 1136px;
     }
 
-    #post-btn{
+    #sub_container{
         position:relative;
-        margin-left: 1054px;
+        width: 1136px;
         margin-bottom: 10px;
+        align-self: right;
+    }
+
+    #search_box{
+        position: relative;
+        margin-left: 0px;
+        height: 40px;
     }
 </style>

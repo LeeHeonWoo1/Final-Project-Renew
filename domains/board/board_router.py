@@ -20,3 +20,7 @@ def get_article_list(db:Session = Depends(get_db), section:str='', page:int=0, s
 def get_one_article(article_id:int = 0, db:Session = Depends(get_db)):
     article = board_crud.get_one_article(db=db, article_id=article_id)
     return article
+
+@router.delete('/delete_article/{article_id}', status_code=status.HTTP_204_NO_CONTENT)
+def delete_one_article(article_id:int = 0, db:Session = Depends(get_db)):
+    board_crud.delete_article(db=db, article_id=article_id)
