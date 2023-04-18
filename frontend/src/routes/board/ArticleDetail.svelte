@@ -1,8 +1,8 @@
 <script>
-  import { push } from "svelte-spa-router";
+  import { push, link } from "svelte-spa-router";
     import NavBar from "../../components/NavBar.svelte";
     import fastapi from "../../lib/api";
-    import { user_nickname, page } from "../../lib/store";
+    import { user_nickname, page, section } from "../../lib/store";
     import { Button, Textarea, Toolbar, ToolbarGroup, ToolbarButton } from "flowbite-svelte";
 
     export let params = {}
@@ -22,11 +22,13 @@
     function DelArticle(){
       let url = `/api/board/delete_article/${_id}`
 
-      alert('정말로 삭제하시겠습니까?')
-      fastapi('delete', url, {}, (json)=>{
+      let result = confirm('정말로 삭제하시겠습니까?')
+      if (result == true){
+        fastapi('delete', url, {}, (json)=>{
         alert('삭제 완료되었습니다.')
         push('/board')
       })
+      }
     }
 
     function PostAnswer(){}
@@ -35,7 +37,7 @@
 
 <NavBar/>
 <div class="container">
-    <div class="item">{article.section}</div>
+    <div class="item"><a use:link href="/board" on:click={()=>{$section = article.section}}>{article.section}></a></div>
     <div class="item">{article.title}</div>
     <div class="item">{article.content}</div>
     <div class="btn_container">
@@ -75,21 +77,30 @@
 </div>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap');
+
 .container {
 	/* display: flex; */
 	display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    height: 600px;
-    width: 1517px;
-    gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  height: 600px;
+  width: 1517px;
+  gap: 10px;
+
 }
 
 .item:nth-child(1) { flex-grow: 0.5; align-self: flex-center;}
-.item:nth-child(2) { flex-grow: 0.5; }
+.item:nth-child(2) { flex-grow: 0.5; font-size: 23px;}
 .item:nth-child(3) { flex-grow: 4; }
 .item:nth-child(4) { flex-grow: 2; }
+
+.item{
+  border: 1px solid rgba(0, 0, 0, 0.164);
+  border-radius: 10px;
+  font-family: 'Noto Serif KR', serif;
+}
 
 .btn_container{
     display: flex;

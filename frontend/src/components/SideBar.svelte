@@ -43,7 +43,7 @@
                 $page = 0
                 GetArticleList($page, $section)
                 push('/board')
-                }} class="link text">{sec.label}</button>
+                }} class="link text" class:active={sec.label==$section}>{sec.label}</button>
         {/each}
         <div class="link text"></div>
         <div class="link text"></div>
@@ -90,6 +90,10 @@
     text-decoration: none;
     transition: background-color .3s;
     border: 1px solid #ddd;
+}
+
+.container button.active{
+    background-color: rgba(0, 0, 0, 0.062);
 }
 
 #pagination button.active {
