@@ -51,3 +51,6 @@ class Answer(Base):
     id = Column(INT, autoincrement=True, primary_key=True)
     answer = Column(VARCHAR(500), nullable=False)
     answer_writer = Column(VARCHAR(60))
+    write_date = Column(DateTime, nullable=False)
+    article_id = Column(INT, ForeignKey('board.id'))
+    article = relationship('board', backref='answers')

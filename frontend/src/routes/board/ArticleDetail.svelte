@@ -96,7 +96,7 @@
 .item:nth-child(3) { flex-grow: 4; }
 .item:nth-child(4) { flex-grow: 2; }
 
-.item{
+.item:nth-child(2), .item:nth-child(3), .item:nth-child(4){
   border: 1px solid rgba(0, 0, 0, 0.164);
   border-radius: 10px;
   font-family: 'Noto Serif KR', serif;
