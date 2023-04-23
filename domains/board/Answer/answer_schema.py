@@ -3,8 +3,8 @@ from datetime import datetime
 
 class Answer(BaseModel):
   id: int
-  content: str
-  writer: str
+  answer: str
+  answer_writer: str
   write_date: datetime
 
   class Config:

@@ -22,8 +22,8 @@ def create_user(db:Session, user_create: CreateUser):
     db.commit()
 
 def get_existing_user(db:Session, user_create:CreateUser):
-    # DB에 이미 등록된 사용자가 있는지 조회
-    return db.query(User).filter((User.username == user_create.username)|(User.email == user_create.email)|(User.nickname == user_create.nickname)).first()
+    user = db.query(User).filter((User.username == user_create.username)|(User.email == user_create.email)|(User.nickname == user_create.nickname)).first()
+    return user
 
 def get_user(db: Session, username: str):
     return db.query(User).filter(User.username == username).first()

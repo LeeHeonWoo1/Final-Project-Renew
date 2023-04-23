@@ -1,5 +1,5 @@
 <script>
-  import { push, link } from "svelte-spa-router";
+    import { push, link } from "svelte-spa-router";
     import NavBar from "../../components/NavBar.svelte";
     import fastapi from "../../lib/api";
     import { user_nickname, page, section } from "../../lib/store";
@@ -7,7 +7,7 @@
 
     export let params = {}
     let _id = params.article_id
-    let article = {}
+    let article = {answers:[]}
     let answers=''
     let url = `/api/board/get_one_article/${_id}`
 
@@ -31,7 +31,19 @@
       }
     }
 
-    function PostAnswer(){}
+    function PostAnswer(){
+      let url = `/api/answer/create_answer/${_id}`
+      let params = {
+        writer: $user_nickname,
+        content: answers
+      }
+
+      fastapi('post', url, params, (res)=>{
+        alert('댓글이 등록되었습니다.')
+        answers = ''
+        window.location.reload()
+      })
+    }
 
 </script>
 
@@ -75,6 +87,13 @@
           </form>
     </div>
 </div>
+<div class="replies_container">
+  {#each article.answers as answer}
+    <div class="reply">
+      {answer.answer_writer}:{answer.answer}
+    </div>         
+  {/each}       
+</div>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap');
@@ -100,6 +119,12 @@
   border: 1px solid rgba(0, 0, 0, 0.164);
   border-radius: 10px;
   font-family: 'Noto Serif KR', serif;
+}
+
+.replies_container{
+  border: 1px solid rgba(0, 0, 0, 0.164);
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 .btn_container{

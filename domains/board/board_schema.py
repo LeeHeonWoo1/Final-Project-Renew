@@ -1,5 +1,6 @@
 from pydantic import BaseModel, validator
 from datetime import datetime
+from domains.board.Answer.answer_schema import Answer
 
 class Article(BaseModel):
     id:int
@@ -8,6 +9,7 @@ class Article(BaseModel):
     writer: str
     section: str
     write_date: datetime
+    answers: list[Answer] = []
 
     class Config:
         orm_mode = True
@@ -30,3 +32,6 @@ class CreateArticle(BaseModel):
 class ArticleList(BaseModel):
     total: int = 0
     article_list: list[Article] = []
+    
+    class Config:
+        orm_mode = True

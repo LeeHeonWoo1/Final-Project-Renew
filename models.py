@@ -53,4 +53,4 @@ class Answer(Base):
     answer_writer = Column(VARCHAR(60))
     write_date = Column(DateTime, nullable=False)
     article_id = Column(INT, ForeignKey('board.id'))
-    article = relationship('board', backref='answers')
+    article = relationship("Board", backref="answers")
