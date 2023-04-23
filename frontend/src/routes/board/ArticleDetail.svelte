@@ -90,7 +90,7 @@
 <div class="replies_container">
   {#each article.answers as answer}
     <div class="reply">
-      {answer.answer_writer}:{answer.answer}
+      {answer.answer_writer} : {answer.answer}
     </div>         
   {/each}       
 </div>
