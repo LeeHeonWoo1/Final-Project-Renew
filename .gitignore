@@ -4,5 +4,5 @@ domains/*/__pycache__
 .idea
 *.pyc
 __pycache__
-migrations
+migration
 alembic.ini
