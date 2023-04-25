@@ -5,6 +5,8 @@ from domains.User import user_router
 from domains.reply import reply_router
 from domains.board import board_router
 from domains.board.Answer import answer_router
+from starlette.responses import FileResponse
+from starlette.staticfiles import StaticFiles
 
 app = FastAPI()
 
@@ -23,3 +25,8 @@ app.include_router(user_router.router)
 app.include_router(reply_router.router)
 app.include_router(board_router.router)
 app.include_router(answer_router.router)
+app.mount("/assets", StaticFiles(directory="frontend/dist/assets"))
+
+@app.get("/")
+def index():
+    return FileResponse("frontend/dist/index.html")
