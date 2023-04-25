@@ -2,6 +2,7 @@ import smtplib
 from email.message import EmailMessage
 import random
 
+# 메일인증
 class gmail_sender:
     def __init__ (self, sender_email, receiver_email, sender_password, cc_email="", bcc_email=""):
         self.s_email = sender_email
