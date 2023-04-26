@@ -62,6 +62,8 @@ def get_user_id(_user:find_schema.UserID, db:Session = Depends(get_db)):
 @router.post('/user-email', status_code=status.HTTP_204_NO_CONTENT)
 def get_user_email(_user:find_schema.FindID, db:Session = Depends(get_db)):
     user_info = user_crud.get_user_email(db=db, email=_user.email)
+    if not user_info:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="이름, 이메일 주소를 확인하세요.")
 
     if user_info.email == _user.email and user_info.name == _user.name:
         mail_sender = gmail_sender(MAIL_SENDER, _user.email, SENDER_PASSWORD)

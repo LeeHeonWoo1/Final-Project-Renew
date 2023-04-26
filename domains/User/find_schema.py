@@ -25,9 +25,6 @@ class FindID(BaseModel):
         
         return v
 
-    class Config:
-        orm_mode = True
-
 class FindPassword(BaseModel):
     username:str
     email:str
