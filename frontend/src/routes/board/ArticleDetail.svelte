@@ -66,6 +66,13 @@
             }}>목록으로</Button>
         </div>
     </div>
+    <!-- <div class="item">
+      {#each article.answers as answer}
+        <div class="reply">
+          {answer.answer_writer} : {answer.answer}
+        </div>         
+      {/each}       
+    </div> -->
     <div class="item">
         <form>
             <label for="editor" class="sr-only">Publish post</label>
@@ -87,13 +94,6 @@
           </form>
     </div>
 </div>
-<div class="replies_container">
-  {#each article.answers as answer}
-    <div class="reply">
-      {answer.answer_writer} : {answer.answer}
-    </div>         
-  {/each}       
-</div>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap');
@@ -104,10 +104,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  height: 600px;
+  height: auto;
   width: 1517px;
   gap: 10px;
-
 }
 
 .item:nth-child(1) { flex-grow: 0.5; align-self: flex-center;}
@@ -121,11 +120,11 @@
   font-family: 'Noto Serif KR', serif;
 }
 
-.replies_container{
+/* .replies_container{
   border: 1px solid rgba(0, 0, 0, 0.164);
   border-radius: 10px;
   margin-top: 10px;
-}
+} */
 
 .btn_container{
     display: flex;
