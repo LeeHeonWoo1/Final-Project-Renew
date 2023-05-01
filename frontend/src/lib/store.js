@@ -17,7 +17,7 @@ export const section = persist_storage("section", "게시판")
 export const page = persist_storage("page", 0)
 
 export const is_login = persist_storage("is_login", false)
-export const keyword = persist_storage("keyword", "")
+export const keyword = persist_storage("keyword", "black")
 export const board_option = persist_storage("board_option", "")
 
 export const videoList = persist_storage("videoList", [])

@@ -6,7 +6,9 @@
 </script>
 
 <div class="main">
-    <NavBar />
+    <div id="navigation-bar">
+        <NavBar />
+    </div>
     <div style="margin-top:120px;" class='container'>
         {#if $videoList.length === 0}
             <div id="not-found">
@@ -24,6 +26,13 @@
 </div>
 
 <style>
+#navigation-bar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+}
+
 .videos{
     border-radius: 5px;
 }

@@ -18,8 +18,10 @@
         }
 </script>
 
-<div class="container">
+<div id="navigation-bar">
     <NavBar/>
+</div>
+<div class="container">
     <main class="main-table">
         <Heading tag="h1" class="mb-4" customSize="text-3xl font-extrabold  md:text-5xl lg:text-6xl">{$section}</Heading>
         <div align="right" id="sub_container">
@@ -56,6 +58,13 @@
 </div>
 
 <style>
+    #navigation-bar{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
     .container{
         display: grid;
         position: relative;
