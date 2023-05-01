@@ -46,5 +46,5 @@ def make_test_articles():
         
     db.commit()
     
-# make_dance_dataset()
-# make_test_articles()
+make_dance_dataset()
+make_test_articles()

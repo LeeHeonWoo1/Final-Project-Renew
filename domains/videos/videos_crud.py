@@ -7,7 +7,7 @@ def get_video_list(db:Session):
     return video_list
 
 def get_random_video_list(db:Session):
-    rand_vid_list = db.query(Dataset).order_by(func.rand()).limit(10).all()
+    rand_vid_list = db.query(Dataset).order_by(func.random()).limit(10).all()
     return rand_vid_list
 
 def get_video(db: Session, video_id: int):
