@@ -4,7 +4,6 @@
   import { board_option, user_nickname } from '../../lib/store';
   import fastapi from '../../lib/api';
   import { push } from 'svelte-spa-router';
-  import SideBar from '../../components/SideBar.svelte';
 
   let dropdown_options = [
     {id:1, text:'홍보 게시판'},
@@ -36,7 +35,9 @@
 </script>
 
 <div class="container">
-  <NavBar/>
+  <div id="navigation_bar">
+    <NavBar/>
+  </div>
   <main id="create_article">
     <Heading tag="h1" class="mb-4" customSize="text-3xl font-extrabold  md:text-5xl lg:text-6xl">게시글 작성</Heading>
     <P>게시판 선택 후 제목과 내용을 작성해주세요.</P>
@@ -79,6 +80,13 @@
 </div>
 
 <style>
+  #navigation_bar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
   .container{
     display: grid;
     position: relative;

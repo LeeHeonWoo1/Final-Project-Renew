@@ -49,9 +49,10 @@
     }
 </script>
 
-
 <div class="container">
-    <NavBar/>
+    <div id="navigation_bar">
+        <NavBar/>
+    </div>
     <main>
         <iframe  width="1100" height="600" src="{inform.youtube_url}?autoplay=0" title="YouTube video player" frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -111,6 +112,13 @@
 
 <style>    
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
+#navigation_bar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
 ol.large-numbers {
   counter-reset:li; /* Initiate a counter */
   margin-left:0; /* Remove the default left margin */

@@ -6,4 +6,4 @@ domains/*/__pycache__
 __pycache__
 migrations
 alembic.ini
-myapi.db
+dancey.db

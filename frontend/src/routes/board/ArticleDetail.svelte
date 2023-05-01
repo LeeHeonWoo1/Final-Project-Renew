@@ -4,10 +4,11 @@
     import fastapi from "../../lib/api";
     import { user_nickname, page, section } from "../../lib/store";
     import { Button, Textarea, Toolbar, ToolbarGroup, ToolbarButton } from "flowbite-svelte";
+    import {marked} from 'marked'
 
     export let params = {}
     let _id = params.article_id
-    let article = {answers:[]}
+    let article = {answers:[], content:''}
     let answers=''
     let url = `/api/board/get_one_article/${_id}`
 
@@ -47,7 +48,10 @@
 
 </script>
 
-<NavBar/>
+<div id="navigation_bar">
+  <NavBar/>
+</div>
+<br><br><br>
 <div id="wapper">
   <header>
     <p>{article.title}</p>
@@ -55,10 +59,25 @@
   <section>
     <p>{article.section}</p>
     <article>
-      {article.content}
+      <p>{@html marked.parse(article.content)}</p>
     </article>
-
   </section>
+  <br><br><br>
+  <div class="btn_container">
+    <div class="btn">
+        <Button disabled='{$user_nickname !== article.writer}' on:click={ModArticle}>수정</Button>
+    </div>
+    <div class="btn">
+        <Button disabled='{$user_nickname !== article.writer}' on:click={DelArticle}>삭제</Button>
+    </div>
+    <div class="btn">
+        <Button on:click={()=>{
+          $page = 0
+          push('/board')
+        }}>목록으로</Button>
+    </div>
+</div>
+<br><br><br>
   <footer>
     <div class="item">
       <form>
@@ -81,9 +100,10 @@
         </form>
   </div>
   </footer>
+  <br><br>
   <aside>
-    <p>replies</p>
-    <ul>
+    <p>댓글</p>
+    <ul id="replies">
       {#each article.answers as answer}
         <li>
           {answer.answer_writer} : {answer.answer}
@@ -96,21 +116,40 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap');
 
+#navigation_bar{
+  margin-top: 0px;
+}
+
+.btn_container{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  gap: 5px;
+}
+
 div#wapper {
     position: relative;
     display: flex;
     flex-direction: column;
-		width: 1669px;
+		width: 1536px;
 		text-align: left;
 		min-height: 300px;
 		margin: 0 auto;
 	}
+
 header{
   position: relative;
+  font-size: 40px;
+}
+
+section{
+  border: 1px solid #999;
+  border-radius: 5px;
 }
 
 aside{
   border: 1px solid #999;
+  border-radius: 5px;
 }
 
 header, footer, aside, section {
@@ -129,5 +168,10 @@ footer {
   height: auto;
   position: relatiev;
   clear: both;
+}
+
+#replies{
+  border: 1px solid #999;
+  border-radius: 5px;
 }
 </style>
