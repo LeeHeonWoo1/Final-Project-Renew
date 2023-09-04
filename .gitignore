@@ -7,3 +7,6 @@ __pycache__
 migrations
 alembic.ini
 dancey.db
+dancy/model
+dancy/1_get_dataset.ipynb
+dancy/use_class.py
